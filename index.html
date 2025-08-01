@@ -541,20 +541,20 @@
     </thead>
     <tbody>
       <tr><td>10:00–10:50</td><td>Taiji Suzuki</td><td>
-        <a href="#" class="talk-title" data-abstract="（In the first half of this presentation, I will give an overview of our achievements on deep learning theories in the past few years. In particular, I will overview how feature learning affects its predictive performances from several aspects such as representation and optimization. Indeed, if the true function has a sparse structure, deep learning can outperform linear estimators. This observation can be shown even with optimization guarantees by considering shallow neural networks. 
-In the second half, I will talk about recent developments of learning theories on modern foundation models such as Transformers and Mixture-of-Experts. In particular, I will show that Transformer can perform test time feature learning for incontext learning and it even achieves the complexity characterized by generative exponent. If time permits, I will show a feature learning theory of training a mixture of experts, in which we show that training together with the router network, MoE can learn an objective even in a difficult situation.）">
+        <a href="#" class="talk-title" data-abstract="In the first half of this presentation, I will give an overview of our achievements on deep learning theories in the past few years. In particular, I will overview how feature learning affects its predictive performances from several aspects such as representation and optimization. Indeed, if the true function has a sparse structure, deep learning can outperform linear estimators. This observation can be shown even with optimization guarantees by considering shallow neural networks. 
+In the second half, I will talk about recent developments of learning theories on modern foundation models such as Transformers and Mixture-of-Experts. In particular, I will show that Transformer can perform test time feature learning for incontext learning and it even achieves the complexity characterized by generative exponent. If time permits, I will show a feature learning theory of training a mixture of experts, in which we show that training together with the router network, MoE can learn an objective even in a difficult situation.">
           Overview of deep learning team achievements, and recent developments on learning theory for modern foundation models
         </a>
       </td></tr>
 
       <tr><td>11:00–11:40</td><td>Murat Erdogdu</td><td>
-        <a href="#" class="talk-title" data-abstract="（We study the optimization and sample complexity of gradient-based training of a
+        <a href="#" class="talk-title" data-abstract="We study the optimization and sample complexity of gradient-based training of a
 two-layer student neural network with quadratic activation function in the
 high-dimensional regime, where the input is Gaussian and the response is generated
 from a two-layer teacher network with quadratic activation, and power-law decay on
 the second-layer coefficients. We provide a sharp analysis of the SGD dynamics in the
 feature learning regime, and derive scaling laws for the prediction risk that highlight
-the power-law dependencies on the optimization time, sample size, and model width.）">
+the power-law dependencies on the optimization time, sample size, and model width.">
           Learning Quadratic Neural Networks in High Dimensions
         </a>
       </td></tr>
@@ -562,13 +562,13 @@ the power-law dependencies on the optimization time, sample size, and model widt
       <tr><td>11:40–13:30</td><td>Working Lunch</td><td></td></tr>
 
       <tr><td>13:30–14:20</td><td>Fenglei Fan</td><td>
-        <a href="#" class="talk-title" data-abstract="（在此填写摘要）">
+        <a href="#" class="talk-title" data-abstract="In this work, beyond width and depth in a traditional neural network, we augment a neural network with a new dimension called height by inserting links to neurons in the same layer, which gives rise to the notion of height. These links, referred to as intra-layer links, form hierarchical structures that enhance the network's approximation ability (expressivity) without increasing its parameter count. We show that this 3D architecture significantly outperforms conventional 2D networks theoretically and empirically.">
           On Expressivity of Height in Neural Networks
         </a>
       </td></tr>
 
       <tr><td>14:20–15:10</td><td>Shinho Chewi</td><td>
-        <a href="#" class="talk-title" data-abstract="（在此填写摘要）">
+        <a href="#" class="talk-title" data-abstract="Generative modeling is a form of distribution learning. From this perspective, prior works on sampling guarantees reduce distribution learning, in the form of learning to generate a sample, to score matching. In this work, we reduce other forms of distribution learning (parameter estimation and density estimation) to score matching as well. This leads to new consequences for diffusion models, such as asymptotic efficiency of a DDPM-based parameter estimator and algorithms for Gaussian mixture density estimation, as well as to a general approach for establishing cryptographic hardness results for score estimation. This is joint work with Alkis Kalavasis, Anay Mehrotra, and Omar Montasser.">
           DDPM score matching and distribution learning
         </a>
       </td></tr>
@@ -576,13 +576,15 @@ the power-law dependencies on the optimization time, sample size, and model widt
       <tr><td>15:10–15:40</td><td>Coffee Break</td><td></td></tr>
 
       <tr><td>15:40–16:30</td><td>Mahdi Soltanolkotabi</td><td>
-        <a href="#" class="talk-title" data-abstract="（在此填写摘要）">
+        <a href="#" class="talk-title" data-abstract="Simple first-order methods like Gradient Descent (GD) remain foundational to modern machine learning. Yet, despite their widespread use, our theoretical understanding of the GD trajectory—how and why it works—remains incomplete in both classical and contemporary settings. This talk explores new horizons in understanding the behavior and power of GD across two distinct but connected fronts.
+In the first part, we examine the surprising power of a single gradient step in enhancing model reasoning. We focus on test-time training (TTT)—a gradient-based approach that adapts model parameters using individual test instances. We introduce a theoretical framework that reveals how TTT can effectively handle distribution shifts and significantly reduce the data required for in-context learning, shedding light on why such simple methods often outperform expectations.
+The second part turns to a more classical optimization setting: learning shallow neural networks with GD. Despite extensive study, even fitting a one-hidden-layer model to basic target functions lacks rigorous performance guarantees. We present a comprehensive analysis of the GD trajectory in this regime, showing how it avoids suboptimal stationary points and converges efficiently to global optima. Our results offer new theoretical foundations for understanding how GD succeeds in the presence of sub-optimal stationary points.">
           One Small Step, One Giant Leap: From Test-Time Tweaks to Global Guarantees
         </a>
       </td></tr>
 
       <tr><td>16:30–17:30</td><td>Denny Wu</td><td>
-        <a href="#" class="talk-title" data-abstract="（在此填写摘要）">
+        <a href="#" class="talk-title" data-abstract="We study the sample and time complexity of online stochastic gradient descent (SGD) in learning a two-layer neural network with M orthogonal neurons on isotropic Gaussian data. We focus on the challenging “extensive-width” regime M>>1 and allow for large condition number in the second-layer parameters, covering the power-law scaling a_m= m^{-\beta} as a special case. We characterize the SGD dynamics for the training of a student two-layer neural network and identify sharp transition times for the recovery of each signal direction. In the power-law setting, our analysis entails that while the learning of individual teacher neurons exhibits abrupt phase transitions, the juxtaposition of emergent learning curves at different timescales results in a smooth scaling law in the cumulative objective.">
           Learning shallow neural networks in high dimensions: SGD dynamics and scaling laws
         </a>
       </td></tr>

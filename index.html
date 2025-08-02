@@ -669,7 +669,8 @@ The second part turns to a more classical optimization setting: learning shallow
     </thead>
     <tbody>
       <tr><td>10:00–10:50</td><td>Han Bao</td><td>
-        <a href="#" class="talk-title" data-abstract="The gradient descent (GD) has been one of the most common optimizers in machine learning. In particular, the loss landscape of a neural network is typically sharpened during the initial phase of training, making the training dynamics hover on the edge of stability. This is beyond our standard understanding of GD convergence in the stable regime where arbitrarily chosen stepsize is sufficiently smaller than the edge of stability. Recently, Wu et al. (COLT2024) have shown that GD converges with arbitrary stepsize under linearly separable logistic regression. Although their analysis hinges on the self-bounding property of the logistic loss, which seems to be a cornerstone to establish a modified descent lemma, our pilot study shows that other loss functions without the self-bounding property can make GD converge with arbitrary stepsize. To further understand what property of a loss function matters in GD, we aim to show arbitrary-stepsize GD convergence for a general loss function based on the framework of Fenchel-Young losses. We essentially leverage the classical perceptron argument to derive the convergence rate for achieving ϵ-optimal loss, which is possible for a majority of Fenchel-Young losses. Among typical loss functions, the Tsallis entropy achieves the GD convergence rate T=Ω(ϵ−1/2), and the R{é}nyi entropy achieves the far better rate T=Ω(ϵ−1/3). We argue that this better rate is possible because of \emph{separation margin} of loss functions, instead of the self-bounding property.">
+        <a href="#" class="talk-title" data-abstract="The gradient descent (GD) has been one of the most common optimizers in machine learning. In particular, the loss landscape of a neural network is typically sharpened during the initial phase of training, making the training dynamics hover on the edge of stability. This is beyond our standard understanding of GD convergence in the stable regime where arbitrarily chosen stepsize is sufficiently smaller than the edge of stability. Recently, Wu et al. (COLT2024) have shown that GD converges with arbitrary stepsize under linearly separable logistic regression. Although their analysis hinges on the self-bounding property of the logistic loss, which seems to be a cornerstone to establish a modified descent lemma, our pilot study shows that other loss functions without the self-bounding property can make GD converge with arbitrary stepsize. To further understand what property of a loss function matters in GD, we aim to show arbitrary-stepsize GD convergence for a general loss function based on the framework of Fenchel-Young losses. 
+            We essentially leverage the classical perceptron argument to derive the convergence rate for achieving ϵ-optimal loss, which is possible for a majority of Fenchel-Young losses. Among typical loss functions, the Tsallis entropy achieves the GD convergence rate T=Ω(ϵ−1/2), and the R{é}nyi entropy achieves the far better rate T=Ω(ϵ−1/3). We argue that this better rate is possible because of \emph{separation margin} of loss functions, instead of the self-bounding property.">
           Large stepsize logistic regression and beyond
         </a>
       </td></tr>
@@ -709,49 +710,71 @@ The second part turns to a more classical optimization setting: learning shallow
   .talk-title:hover{text-decoration:underline}
 </style>
 
-<script defer
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>         
-
+<!-- ① MathJax 配置（放在任何 MathJax 脚本之前） -->
 <script>
-  (function(){
-    const modal = document.getElementById('abstract-modal');
-    const body  = modal.querySelector('.modal-body');
-    const closeBtn = modal.querySelector('.close-btn');
-    let lastFocused = null;
-
-    // 打开
-    function openModal(text){
-      lastFocused = document.activeElement;
-      body.textContent = text || 'No abstract available.';
-      modal.classList.add('open');
-      closeBtn.focus();
-    }
-    // 关闭
-    function closeModal(){
-      modal.classList.remove('open');
-      if (lastFocused && lastFocused.focus) lastFocused.focus();
-    }
-
-    // 绑定所有题目
-    document.querySelectorAll('.talk-title').forEach(a=>{
-      a.addEventListener('click', e=>{
-        e.preventDefault();
-        openModal(a.dataset.abstract || '');
-      });
-    });
-
-    // 点击遮罩或 × 关闭
-    modal.addEventListener('click', e=>{
-      if (e.target === modal || e.target.classList.contains('close-btn')) closeModal();
-    });
-
-    // Esc 关闭
-    document.addEventListener('keydown', e=>{
-      if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
-    });
-  })();
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],    // 支持 $…$ 与 \( … \)
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    },
+    svg: {fontCache: 'global'}                     // 选 SVG 输出，体积小
+  };
 </script>
+
+<!-- ② 加载 MathJax（用 tex-svg 组件即可） -->
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<!-- ③ 你的业务脚本：只改 openModal() 里几行，其余保持原样 -->
+<script>
+(function () {
+  const modal = document.getElementById('abstract-modal');
+  const body  = modal.querySelector('.modal-body');
+  const closeBtn = modal.querySelector('.close-btn');
+  let lastFocused = null;
+
+  // 打开
+  function openModal(text) {
+    lastFocused = document.activeElement;
+
+    /* 用 innerHTML + 替换 \n 为 <br>，让换行和 LaTeX 都生效 */
+    body.innerHTML = (text || 'No abstract available.').replace(/\n/g, '<br>');
+    modal.classList.add('open');
+    closeBtn.focus();
+
+    /* 等 MathJax 初始化完成后，只排版弹窗里的内容 */
+    if (window.MathJax) {
+      MathJax.startup.promise.then(() => MathJax.typesetPromise([body]));
+    }
+  }
+
+  // 关闭
+  function closeModal() {
+    modal.classList.remove('open');
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  // 绑定所有题目
+  document.querySelectorAll('.talk-title').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      openModal(a.dataset.abstract || '');
+    });
+  });
+
+  // 点击遮罩或 × 关闭
+  modal.addEventListener('click', e => {
+    if (e.target === modal || e.target.classList.contains('close-btn')) closeModal();
+  });
+
+  // Esc 关闭
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+})();
+</script>
+      
+
+
 
 
 
